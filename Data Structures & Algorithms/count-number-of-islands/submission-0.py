@@ -1,0 +1,22 @@
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m=len(grid)
+        n=len(grid[0])
+        islands=0
+
+        directions = [[1,0],[-1,0],[0,1],[0,-1]]
+
+        def dfs(r,c):
+            if (r<0 or c<0 or r>=m or c>=n or grid[r][c]=="0"):
+                return
+            grid[r][c]="0"
+            for dr,dc in directions:
+                dfs(r+dr,c+dc)
+
+        for x in range(m):
+            for y in range(n):
+                if grid[x][y]=="1":
+                    dfs(x,y)
+                    islands+=1
+        return islands
+            
